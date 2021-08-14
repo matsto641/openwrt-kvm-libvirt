@@ -1,6 +1,3 @@
-
-Ive attached a copy of my libvirt XML settings..
-```
 <domain type="kvm">
   <name>alpinelinux3.13</name>
   <uuid>f16bac5b-ebba-419b-90fc-ed0ed419b64f</uuid>
@@ -81,4 +78,3 @@ Ive attached a copy of my libvirt XML settings..
     </memballoon>
   </devices>
 </domain>
-```
