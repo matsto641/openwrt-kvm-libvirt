@@ -1,1 +1,84 @@
 
+Ive attached a copy of my libvirt XML settings..
+```
+<domain type="kvm">
+  <name>alpinelinux3.13</name>
+  <uuid>f16bac5b-ebba-419b-90fc-ed0ed419b64f</uuid>
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://alpinelinux.org/alpinelinux/3.13"/>
+    </libosinfo:libosinfo>
+  </metadata>
+  <memory unit="KiB">786432</memory>
+  <currentMemory unit="KiB">786432</currentMemory>
+  <vcpu placement="static">2</vcpu>
+  <os>
+    <type arch="x86_64" machine="pc-i440fx-6.0">hvm</type>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <vmport state="off"/>
+  </features>
+  <cpu mode="host-passthrough" check="partial" migratable="on"/>
+  <clock offset="utc">
+    <timer name="rtc" tickpolicy="catchup"/>
+    <timer name="pit" tickpolicy="delay"/>
+    <timer name="hpet" present="no"/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled="no"/>
+    <suspend-to-disk enabled="no"/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <controller type="usb" index="0" model="qemu-xhci" ports="15">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x0"/>
+    </controller>
+    <controller type="pci" index="0" model="pci-root"/>
+    <interface type="network">
+      <mac address="52:54:00:0d:4f:9e"/>
+      <source network="wrt"/>
+      <model type="e1000"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x0"/>
+    </interface>
+    <interface type="network">
+      <mac address="52:54:00:2a:8a:85"/>
+      <source network="default"/>
+      <model type="e1000"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x08" function="0x0"/>
+    </interface>
+    <interface type="network">
+      <mac address="52:54:00:cd:3e:74"/>
+      <source network="VPN-Internal"/>
+      <model type="e1000"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x0b" function="0x0"/>
+    </interface>
+    <serial type="pty">
+      <target type="isa-serial" port="0">
+        <model name="isa-serial"/>
+      </target>
+    </serial>
+    <console type="pty">
+      <target type="serial" port="0"/>
+    </console>
+    <input type="mouse" bus="ps2"/>
+    <input type="keyboard" bus="ps2"/>
+    <audio id="1" type="spice"/>
+    <hostdev mode="subsystem" type="usb" managed="yes">
+      <source>
+        <vendor id="0x13fe"/>
+        <product id="0x6300"/>
+      </source>
+      <boot order="1"/>
+      <address type="usb" bus="0" port="4"/>
+    </hostdev>
+    <memballoon model="virtio">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x09" function="0x0"/>
+    </memballoon>
+  </devices>
+</domain>
+```
