@@ -1,1 +1,16 @@
+<network connections="1">
+  <name>wrt</name>
+  <uuid>0dd86f4b-dfbe-44b4-9e5f-6e6da9c8ae5e</uuid>
+  <forward dev="enp34s0" mode="route">
+    <interface dev="enp34s0"/>
+  </forward>
+  <bridge name="virbr5" stp="on" delay="0"/>
+  <mac address="52:54:00:06:f1:27"/>
+  <domain name="wrt"/>
+  <ip address="10.10.100.1" netmask="255.255.255.0">
+    <dhcp>
+      <range start="10.10.100.128" end="10.10.100.254"/>
+    </dhcp>
+  </ip>
+</network>
 
